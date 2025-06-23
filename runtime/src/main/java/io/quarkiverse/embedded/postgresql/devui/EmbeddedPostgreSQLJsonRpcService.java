@@ -9,6 +9,10 @@ import jakarta.inject.Inject;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import io.quarkus.devui.runtime.config.ConfigDescriptionBean;
+import io.quarkus.runtime.LaunchMode;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
+import static io.quarkus.runtime.LaunchMode.DEVELOPMENT;
 
 public class EmbeddedPostgreSQLJsonRpcService {
 
