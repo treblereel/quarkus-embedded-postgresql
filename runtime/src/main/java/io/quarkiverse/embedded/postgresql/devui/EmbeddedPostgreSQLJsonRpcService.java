@@ -22,15 +22,9 @@ public class EmbeddedPostgreSQLJsonRpcService {
     String jdbcUrl;
 
     public int getDatasourcePort() {
-        String port;
-        if (LaunchMode.current().equals(DEVELOPMENT)) {
-            port = jdbcUrl;
-        } else {
-            Optional<ConfigDescription> config = configDescriptionBean.getAllConfig().stream()
-                    .filter(c -> c.getName().equalsIgnoreCase("quarkus.datasource.jdbc.url")).findFirst();
-            port = config.get().getConfigValue().getValue();
-        }
-
+        final String port =  LaunchMode.current().equals(DEVELOPMENT)
+?  jdbcUrl : configDescriptionBean.getAllConfig().stream()
+                    .filter(c -> c.getName().equalsIgnoreCase("quarkus.datasource.jdbc.url")).findFirst().get().getConfigValue().getValue();
         // Define a regex pattern to match numbers
         Pattern pattern = Pattern.compile("\\d+");
 
